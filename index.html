@@ -13,12 +13,12 @@
 			typescriptOptions: { emitDecoratorMetadata: true },
 			packages: {app: {defaultExtension: 'ts'}}
 		});
-		System.import('main.ts');
 	</script>
 </head>
 
 <body>
-	<hello-world></hello-world>
+	<app>Loading...</app>
+	<script>System.import('app/app');</script>
 </body>
 
 </html>
