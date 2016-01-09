@@ -1,11 +1,10 @@
 {
 	"version": "1.7.5",
 	"compilerOptions": {
-		"target": "es5",
-		"module": "commonjs",
-		"emitDecoratorMetadata": true,
+		"target": "ES5",
+		"module": "system",
+		"moduleResolution": "commonjs",
 		"experimentalDecorators": true,
-		"rootDir": ".",
-		"outDir": "./js"
+		"noImplicitAny": true
 	}
 }

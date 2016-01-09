@@ -17,6 +17,7 @@
     "zone.js": "0.5.10"
   },
   "devDependencies": {
+    "express": "^4.13.3",
     "live-server": "^0.8.2",
     "typescript": "1.7.5"
   }
