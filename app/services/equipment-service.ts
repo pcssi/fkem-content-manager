@@ -1,6 +1,10 @@
 export class Equipment {
 	constructor(
-		public name: string
+		public name: string,
+		public type: string,
+		public attackPower: number,
+		public defensePower: number,
+		public magicPower: number
 	) {
 		
 	}
@@ -8,7 +12,7 @@ export class Equipment {
 
 export class EquipmentService {
 	getEquipment(): Array<Equipment> {
-		return equipment.map(e => new Equipment(e.name));
+		return equipment.map(e => new Equipment(e.name, e.type, e.attackPower, e.defensePower, e.magicPower));
 	}
 }
 
