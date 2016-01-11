@@ -6,7 +6,7 @@ export class GameEvent {
 }
 
 export class GameEventService {
-	getGameEvent(): Array<GameEvent> {
+	getGameEvents(): Array<GameEvent> {
 		return gameEvents.map(e => new GameEvent(e.name, e.description));
 	}
 }
