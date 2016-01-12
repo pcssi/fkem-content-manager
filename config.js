@@ -1,3 +1,4 @@
+/* global System */
 System.config({
 	baseUrl: '/',
 	transpiler: 'typescript',
