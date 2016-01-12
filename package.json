@@ -3,7 +3,7 @@
   "description": "Angular and NodeJS web app for creating and persisting content used in the FKEM mobile game. Content is stored in JSON format.",
   "private": true,
   "scripts": {
-    "start": "live-server"
+    "start": "node ./server.js"
   },
   "dependencies": {
     "angular2": "2.0.0-beta.0",
