@@ -1,9 +1,9 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {EventChoice, EventChoiceService} from 'app/services/eventChoice-service';
 
 const template: string = `
-	<h1>Event Choices</h1>
+	<h4>Event Choices</h4>
 	<table class="table">
 		<thead>
 			<tr>
@@ -11,7 +11,7 @@ const template: string = `
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="#choice of eventChoices">
+			<tr *ngFor="#choice of choicesArray">
 				<td>{{choice.description}}</td>
 			</tr>
 		</tbody>
@@ -25,9 +25,14 @@ const template: string = `
 	directives: [NgFor]
 })
 export default class EventChoicesComponent {
-	eventChoices: Array<EventChoice> = [];
+	eventChoiceService: EventChoiceService;
+	@Input() choiceIds;
+	choicesArray: Array<EventChoice> = [];
 	
-	constructor(private eventChoiceService: EventChoiceService) {
-		this.eventChoices = this.eventChoiceService.getEventChoices();
+	constructor(private eventChoiceService2: EventChoiceService) {
+		this.eventChoiceService = this.eventChoiceService2;
+	}
+	ngOnInit() {
+		this.choicesArray = this.eventChoiceService.getEventChoices(this.choiceIds);
 	}
 }

@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {GameEvent, GameEventService} from 'app/services/gameEvent-service';
+import EventChoicesComponent from 'app/components/game-events/event-choices/event-choices';
 
 const template: string = `
 	<h1>Game Events</h1>
@@ -12,7 +13,14 @@ const template: string = `
 		</thead>
 		<tbody>
 			<tr *ngFor="#event of gameEvents">
-				<td>{{event.name}}</td>
+				<td>
+					<div>
+						{{event.name}}
+					</div>
+					<div>
+						<event-choices [choiceIds]="event.choices"></event-choices>
+					</div>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -22,7 +30,10 @@ const template: string = `
 	selector: 'game-events',
 	providers: [GameEventService],
 	template: template,
-	directives: [NgFor]
+	directives: [
+		NgFor,
+		EventChoicesComponent
+	]
 })
 export default class GameEventsComponent {
 	gameEvents: Array<GameEvent> = [];
