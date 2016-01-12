@@ -36,11 +36,11 @@ var template: string = `
 	]
 })
 export default class EquipmentItemsComponent {
-	
+
 	equipment: Array<Equipment> = [];
-	
+
 	constructor(private equipmentService: EquipmentService) {
 		this.equipment = this.equipmentService.getEquipment();
 	}
-	
+
 }
