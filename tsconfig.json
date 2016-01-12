@@ -1,10 +1,10 @@
 {
 	"version": "1.7.5",
 	"compilerOptions": {
-		"target": "ES5",
+		"target": "es5",
 		"module": "system",
-		"moduleResolution": "commonjs",
-		"experimentalDecorators": true,
-		"noImplicitAny": true
+		"moduleResolution": "classic",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
 	}
 }
