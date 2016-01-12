@@ -1,6 +1,6 @@
 import {Component, Input} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {EventChoice, EventChoiceService} from 'app/services/eventChoice-service';
+import {EventChoice, EventChoiceService} from '../../../services/eventChoice-service';
 
 const template: string = `
 	<h4>Event Choices</h4>

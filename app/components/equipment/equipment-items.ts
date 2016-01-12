@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {Equipment, EquipmentService} from 'app/services/equipment-service';
+import {Equipment, EquipmentService} from '../../services/equipment-service';
 
 var template: string = `
 	<h1>Equipment</h1>

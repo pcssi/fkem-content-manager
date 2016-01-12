@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
-import EquipmentItemsComponent from 'app/components/equipment/equipment-items';
-import GameEventsComponent from 'app/components/game-events/game-events';
+import EquipmentItemsComponent from '../equipment/equipment-items';
+import GameEventsComponent from '../game-events/game-events';
 
 var template: string = `
 	<div class="container">

@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {GameEvent, GameEventService} from 'app/services/gameEvent-service';
-import EventChoicesComponent from 'app/components/game-events/event-choices/event-choices';
+import {GameEvent, GameEventService} from '../../services/gameEvent-service';
+import EventChoicesComponent from '../game-events/event-choices/event-choices';
 
 const template: string = `
 	<h1>Game Events</h1>
