@@ -1,12 +1,14 @@
 import {Component} from 'angular2/core';
 import EquipmentItemsComponent from '../equipment/equipment-items';
 import GameEventsComponent from '../game-events/game-events';
+import GameEventFormComponent from '../game-events/game-event-form';
 
 var template: string = `
 	<div class="container">
 		<div class="row">
 			<equipment-items></equipment-items>
 			<game-events></game-events>
+			<game-event-form></game-event-form>
 		</div>
 	</div>
 `;
@@ -16,7 +18,8 @@ var template: string = `
 	template: template,
 	directives: [
 		EquipmentItemsComponent,
-		GameEventsComponent
+		GameEventsComponent,
+		GameEventFormComponent
 	]
 })
 export default class ApplicationComponent {
