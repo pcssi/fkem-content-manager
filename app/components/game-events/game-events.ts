@@ -8,14 +8,14 @@ const template: string = `
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Name</th>
+				<th>Title</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="#event of gameEvents" (click)="event.expanded = !event.expanded">
 				<td>
 					<div>
-						{{event.name}}
+						{{event.title}}
 					</div>
 					<div *ngIf="event.expanded">
 						<event-choices [choiceIds]="event.choices"></event-choices>
