@@ -12,12 +12,12 @@ const template: string = `
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="#event of gameEvents">
+			<tr *ngFor="#event of gameEvents" (click)="event.expanded = !event.expanded">
 				<td>
 					<div>
 						{{event.name}}
 					</div>
-					<div>
+					<div *ngIf="event.expanded">
 						<event-choices [choiceIds]="event.choices"></event-choices>
 					</div>
 				</td>
