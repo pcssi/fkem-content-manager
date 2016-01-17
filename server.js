@@ -2,8 +2,12 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var fs = require('fs');
+var bodyParser = require('body-parser');
 var jsonStr = JSON.stringify(fs.readFileSync('data/equipment.json', 'utf8'));
 var equipment = JSON.parse(jsonStr);
+var gameEvents = JSON.parse(fs.readFileSync('data/gameEvents.json', 'utf8'));
+
+app.use(bodyParser.json());
 
 app.get('/equipment', function(req, res) {
 	console.log('Sending Equipment', equipment);
@@ -11,9 +15,15 @@ app.get('/equipment', function(req, res) {
 });
 
 app.get('/events', function(req, res) {
-	const events = JSON.parse(JSON.stringify(fs.readFileSync('data/gameEvents.json', 'utf8')));
-	console.log('Sending Events', events);
-	res.send(events);
+	console.log('Sending Events', gameEvents);
+	res.send(gameEvents);
+});
+
+app.post('/submit-event', function(req, res) {
+	var newEvent = req.body;
+	console.log('received new event', newEvent);
+	gameEvents.push(newEvent);
+	res.end(JSON.stringify(gameEvents));
 });
 
 app.use(express.static('./'));
