@@ -39,7 +39,7 @@ export default class GameEventsComponent {
 	gameEvents: Object = [];
 	
 	constructor(http: Http) {
-		http.get('http://127.0.0.1:3000/events')
+		http.get('/events')
 			.map(res => res.json())
 			.subscribe(events => this.gameEvents = events);
 	}
