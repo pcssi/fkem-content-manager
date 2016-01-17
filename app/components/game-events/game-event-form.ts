@@ -35,6 +35,7 @@ export default class GameEventFormComponent {
 			.map(res => res.json())
 			.subscribe(
 				data => console.log('response data', data),
-				() => console.log('submition accepted'));
+				() => console.log('submition accepted')
+			);
 	}
 }
