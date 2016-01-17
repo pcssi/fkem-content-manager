@@ -23,6 +23,10 @@ app.post('/submit-event', function(req, res) {
 	var newEvent = req.body;
 	console.log('received new event', newEvent);
 	gameEvents.push(newEvent);
+	fs.writeFile('data/gameEvents.json', JSON.stringify(gameEvents), err => {
+		if(err) throw err;
+		console.log('events saved');
+	});
 	res.end(JSON.stringify(gameEvents));
 });
 
