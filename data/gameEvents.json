@@ -1,0 +1,19 @@
+[
+	{
+		"title": "The First Event",
+		"description": "After you have read the description choose from one of the options below",
+		"choices": [
+			"ec001",
+			"ec002",
+			"ec003"
+		]
+	}, {
+		"title": "The Second Event",
+		"description": "You should know what to do now",
+		"choices": [
+			"ec004",
+			"ec005",
+			"ec006"
+		]
+	}
+]
