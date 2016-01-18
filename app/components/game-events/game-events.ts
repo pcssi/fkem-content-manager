@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {HTTP_PROVIDERS, Http} from 'angular2/http';
+import {GameEventsService} from '../../services/game-events.service';
 import EventChoicesComponent from '../game-events/event-choices/event-choices';
 
 const template: string = `
@@ -28,7 +28,6 @@ const template: string = `
 
 @Component({
 	selector: 'game-events',
-	providers: [HTTP_PROVIDERS],
 	template: template,
 	directives: [
 		NgFor,
@@ -38,9 +37,8 @@ const template: string = `
 export default class GameEventsComponent {
 	gameEvents: Object = [];
 	
-	constructor(http: Http) {
-		http.get('/events')
-			.map(res => res.json())
-			.subscribe(events => this.gameEvents = events);
+	constructor(gameEventsService: GameEventsService) {
+		gameEventsService.gameEvents$.subscribe(updatedEvents => this.gameEvents = updatedEvents);
+		gameEventsService.getGameEvents();
 	}
 }

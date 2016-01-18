@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
-import {HTTP_PROVIDERS, Http, Headers} from 'angular2/http';
+import {GameEventsService} from '../../services/game-events.service';
 
 const template: string = `
 	<form #f="ngForm"
@@ -15,27 +15,13 @@ const template: string = `
 
 @Component({
 	selector: 'game-event-form',
-	providers: [HTTP_PROVIDERS],
 	directives: [FORM_DIRECTIVES],
 	template: template
 })
 export default class GameEventFormComponent {
-	headers = new Headers();
-	
-	constructor(public http: Http){
-		this.headers.append('Content-Type', 'application/json');
-	};
+	constructor(public gameEventsService: GameEventsService){};
 	
 	onSubmit(formData) {
-		console.log('submitting form data', formData);
-		var json = JSON.stringify(formData);
-		this.http.post('/submit-event', json, {
-				headers: this.headers
-			})
-			.map(res => res.json())
-			.subscribe(
-				data => console.log('response data', data),
-				() => console.log('submition accepted')
-			);
+		this.gameEventsService.addGameEvent(formData);
 	}
 }
