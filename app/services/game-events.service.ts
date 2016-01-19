@@ -32,6 +32,7 @@ export class GameEventsService {
 	
 	addGameEvent(gameEvent) {
 		console.log('adding gameEvent', gameEvent);
+        gameEvent.choices = [];
 		var jsonString = JSON.stringify(gameEvent);
 		this.http.post('/submit-event', jsonString, { headers: this.headers })
 			.map(res => res.json())
