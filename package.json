@@ -17,8 +17,8 @@
     "zone.js": "0.5.10"
   },
   "devDependencies": {
+    "body-parser": "^1.14.2",
     "express": "^4.13.3",
-    "live-server": "^0.8.2",
     "typescript": "1.7.5"
   }
 }
