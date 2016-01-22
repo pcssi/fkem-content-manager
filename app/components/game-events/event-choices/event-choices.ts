@@ -1,6 +1,6 @@
 import {Component, Input} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {EventChoice, EventChoiceService} from '../../../services/choices.service';
+import ChoiceEditorComponent from './choice-editor';
 
 const template: string = `
 	<h4>Event Choices</h4>
@@ -11,28 +11,26 @@ const template: string = `
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="#choice of choicesArray">
+			<tr *ngFor="#choice of choices">
 				<td>{{choice.description}}</td>
 			</tr>
 		</tbody>
 	</table>
+	<choice-editor [eventIndex]="eventIndex"></choice-editor>
 `;
 
 @Component({
 	selector: 'event-choices',
-	providers: [EventChoiceService],
 	template: template,
-	directives: [NgFor]
+	directives: [
+		NgFor,
+		ChoiceEditorComponent
+	]
 })
 export default class EventChoicesComponent {
-	eventChoiceService: EventChoiceService;
-	@Input() choiceIds;
-	choicesArray: Array<EventChoice> = [];
+	@Input() choices;
+	@Input() eventIndex;
 	
-	constructor(private eventChoiceService2: EventChoiceService) {
-		this.eventChoiceService = this.eventChoiceService2;
-	}
-	ngOnInit() {
-		this.choicesArray = this.eventChoiceService.getEventChoices(this.choiceIds);
+	constructor() {
 	}
 }
