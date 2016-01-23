@@ -5,4 +5,8 @@ import {HTTP_PROVIDERS, Http} from 'angular2/http';
 import {GameEventsService} from './services/game-events.service';
 import ApplicationComponent from './components/application/application';
 
-bootstrap(ApplicationComponent, [ROUTER_PROVIDERS, ,HTTP_PROVIDERS, GameEventsService]);
+bootstrap(ApplicationComponent, [
+	ROUTER_PROVIDERS,
+	HTTP_PROVIDERS,
+	GameEventsService
+]);
