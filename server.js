@@ -9,7 +9,7 @@ var gameEvents = JSON.parse(fs.readFileSync('data/gameEvents.json', 'utf8'));
 
 app.use(bodyParser.json());
 
-app.get('/equipment', function(req, res) {
+app.get('/get-equipment', function(req, res) {
 	console.log('Sending Equipment', equipment);
 	res.send(equipment);
 });
