@@ -1,6 +1,7 @@
 import {Component, Input} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import ChoiceEditorComponent from './choice-editor';
+import ResultsTableComponent from './results/results-table';
 
 const template: string = `
 	<h4>Event Choices</h4>
@@ -11,8 +12,18 @@ const template: string = `
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="#choice of choices">
-				<td>{{choice.description}}</td>
+			<tr *ngFor="#choice of choices, #i = index">
+				<td>
+					<div>
+						{{choice.description}}
+					</div>
+					<div>
+						<results-table 
+							[result]="choice.results"
+							[eventIndex]="eventIndex"
+							[choiceIndex]="i"></results-table>
+					</div>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -24,7 +35,8 @@ const template: string = `
 	template: template,
 	directives: [
 		NgFor,
-		ChoiceEditorComponent
+		ChoiceEditorComponent,
+		ResultsTableComponent
 	]
 })
 export default class EventChoicesComponent {
