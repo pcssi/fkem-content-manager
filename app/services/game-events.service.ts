@@ -41,6 +41,7 @@ export class GameEventsService {
 
 	addChoice(choice, eventIndex) {
 		console.log('adding choice to eventIndex', choice, eventIndex);
+		choice.results = [];
 		let event = this._dataStore.gameEvents[eventIndex];
 		event.choices.push(choice);
 		
