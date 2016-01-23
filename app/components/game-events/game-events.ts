@@ -16,10 +16,10 @@ const template: string = `
 		<tbody>
 			<tr *ngFor="#event of gameEvents, #i = index">
 				<td>
-					<div (click)="event.expanded = !event.expanded">
+					<div (click)="toggleExpandedEvent(i)">
 						{{event.title}}
 					</div>
-					<div *ngIf="event.expanded">
+					<div *ngIf="expandedEventIndex === i">
 						<event-choices 
 							[choices]="event.choices"
 							[eventIndex]="i"></event-choices>
@@ -43,6 +43,7 @@ const template: string = `
 export default class GameEventsComponent {
 	gameEvents: Object = [];
 	displayEventEditor: boolean = false;
+	expandedEventIndex: number = -1;
 	
 	constructor(gameEventsService: GameEventsService) {
 		gameEventsService.gameEvents$.subscribe(updatedEvents => this.gameEvents = updatedEvents);
@@ -51,5 +52,13 @@ export default class GameEventsComponent {
 	
 	toggleEventEditor() {
 		this.displayEventEditor = !this.displayEventEditor;
+	}
+	
+	toggleExpandedEvent(i: number) {
+		if(this.expandedEventIndex === i) {
+			this.expandedEventIndex = -1;
+			return;
+		}
+		this.expandedEventIndex = i;
 	}
 }
