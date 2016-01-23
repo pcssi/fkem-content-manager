@@ -7,9 +7,11 @@ import {GameEventsService} from '../../services/game-events.service';
 var template: string = `
 	<div class="container">
 		<div class="row">
-			<nav>
-				<a [routerLink]="['Events']">Events</a>
-				<a [routerLink]="['Equipment']">Equipment</a>
+			<nav class="navbar navbar-default">
+				<ul class="nav navbar-nav">
+					<li><a [routerLink]="['Events']">Events</a></li>
+					<li><a [routerLink]="['Equipment']">Equipment</a></li>
+				</ul>
 			</nav>
 			<router-outlet></router-outlet>
 		</div>
