@@ -32,5 +32,6 @@ app.post('/save-events', function(req, res) {
 
 app.use(express.static('./'));
 app.use("/events", express.static('./'));
+app.use("/equipment", express.static('./'));
 
 server.listen(3000, function(){});
