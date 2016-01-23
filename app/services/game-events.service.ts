@@ -21,7 +21,7 @@ export class GameEventsService {
 	}
 
 	getGameEvents() {
-		this.http.get('/events')
+		this.http.get('/get-events')
 			.map(res => res.json())
 			.subscribe(data => {
 				this._dataStore.gameEvents = data;

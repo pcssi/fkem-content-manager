@@ -14,7 +14,7 @@ app.get('/equipment', function(req, res) {
 	res.send(equipment);
 });
 
-app.get('/events', function(req, res) {
+app.get('/get-events', function(req, res) {
 	console.log('Sending Events', gameEvents);
 	res.send(gameEvents);
 });
