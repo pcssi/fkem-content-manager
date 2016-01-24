@@ -3,6 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import EquipmentItemsComponent from '../equipment/equipment-items';
 import GameEventsComponent from '../game-events/game-events';
 import {GameEventsService} from '../../services/game-events.service';
+import {EquipmentService} from '../../services/equipment.service';
 
 var template: string = `
 	<div class="container">
@@ -22,7 +23,10 @@ var template: string = `
 	selector: 'app',
 	template: template,
 	directives: [ROUTER_DIRECTIVES],
-	providers: [GameEventsService]
+	providers: [
+		GameEventsService,
+		EquipmentService
+	]
 })
 @RouteConfig([
 	{path: '/events', name: 'Events', component: GameEventsComponent},

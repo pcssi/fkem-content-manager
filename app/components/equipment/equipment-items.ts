@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {Equipment, EquipmentService} from '../../services/equipment-service';
+import {EquipmentService} from '../../services/equipment.service';
 
 var template: string = `
 	<h1>Equipment</h1>
@@ -24,12 +24,10 @@ var template: string = `
 			</tr>
 		</tbody>
 	</table>
-	
 `;
 
 @Component({
 	selector: 'equipment-items',
-	providers: [EquipmentService],
 	template: template,
 	directives: [
 		NgFor
@@ -37,10 +35,11 @@ var template: string = `
 })
 export default class EquipmentItemsComponent {
 
-	equipment: Array<Equipment> = [];
+	equipment: Array<any> = [];
 
 	constructor(private equipmentService: EquipmentService) {
-		this.equipment = this.equipmentService.getEquipment();
+		equipmentService.equipment$.subscribe(response => this.equipment = response);
+		equipmentService.getEquipment();
 	}
 
 }
