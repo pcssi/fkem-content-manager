@@ -48,6 +48,14 @@ export class GameEventsService {
 		this.saveGameEvents();
 	}
 	
+	addResult(result, eventIndex, choiceIndex) {
+		console.log('adding result to choiceIndex of eventIndex', choiceIndex, eventIndex);
+		let event = this._dataStore.gameEvents[eventIndex];
+		event.choices[choiceIndex].results.push(result);
+		
+		this.saveGameEvents();
+	}
+	
 	private saveGameEvents() {
 		let jsonString = JSON.stringify(this._dataStore.gameEvents);
 		this.http.post('/save-events', jsonString, { headers: this.headers })

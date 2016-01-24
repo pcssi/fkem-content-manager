@@ -19,7 +19,7 @@ const template: string = `
 					</div>
 					<div>
 						<results-table 
-							[result]="choice.results"
+							[results]="choice.results"
 							[eventIndex]="eventIndex"
 							[choiceIndex]="i"></results-table>
 					</div>
