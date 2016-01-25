@@ -11,6 +11,7 @@ const template: string = `
 		<thead>
 			<tr>
 				<th>Title</th>
+				<th>Tile Type</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,6 +24,11 @@ const template: string = `
 						<event-choices 
 							[choices]="event.choices"
 							[eventIndex]="i"></event-choices>
+					</div>
+				</td>
+				<td>
+					<div>
+						{{event.tileType}}
 					</div>
 				</td>
 			</tr>
