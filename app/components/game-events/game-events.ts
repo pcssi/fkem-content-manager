@@ -11,7 +11,7 @@ const template: string = `
 		<thead>
 			<tr>
 				<th>Title</th>
-				<th>Tile Type</th>
+				<th>Tile Types</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,8 +27,8 @@ const template: string = `
 					</div>
 				</td>
 				<td>
-					<div>
-						{{event.tileType}}
+					<div *ngFor="#tile of event.tileTypes">
+						{{tile}}
 					</div>
 				</td>
 			</tr>
