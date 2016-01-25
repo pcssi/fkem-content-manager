@@ -9,12 +9,14 @@ const template: string = `
 			<tr>
 				<th>Title</th>
 				<th>Description</th>
+				<th>Is Combat</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="#result of results">
 				<td>{{result.title}}</td>
 				<td>{{result.description}}</td>
+				<td>{{result.isCombat}}</td>
 			</tr>
 		</tbody>
 	</table>

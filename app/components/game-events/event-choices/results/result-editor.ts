@@ -8,6 +8,7 @@ const template: string = `
 		
 		<div>Title: <input type="text" ngControl="title"></div> 
 		<div>Description: <input type="textarea" ngControl="description"></div> 
+		<div>is Combat: <input type="checkbox" ngControl="isCombat"></div> 
 		<button type="submit">Add Result</button>
 		
 	</form>
