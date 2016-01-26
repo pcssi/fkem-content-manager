@@ -3,6 +3,7 @@ import {NgFor} from 'angular2/common';
 import {GameEventsService} from '../../services/game-events.service';
 import EventChoicesComponent from '../game-events/event-choices/event-choices';
 import GameEventFormComponent from '../game-events/game-event-form';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 const template: string = `
 	<h1>Game Events</h1>
@@ -31,10 +32,12 @@ const template: string = `
 						{{tile}}
 					</div>
 				</td>
+				<td>
+					<a [routerLink]="['Event Editor', {eventIndex: i}]">Edit</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<game-event-form *ngIf="displayEventEditor"></game-event-form>
 `;
 
 @Component({
@@ -43,7 +46,8 @@ const template: string = `
 	directives: [
 		NgFor,
 		EventChoicesComponent,
-		GameEventFormComponent
+		GameEventFormComponent,
+		ROUTER_DIRECTIVES
 	]
 })
 export default class GameEventsComponent {
