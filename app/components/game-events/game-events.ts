@@ -15,7 +15,7 @@ const template: string = `
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="#event of gameEvents, #i = index">
+			<tr *ngFor="#event of dataStore.gameEvents, #i = index">
 				<td>
 					<div (click)="toggleExpandedEvent(i)">
 						{{event.title}}
@@ -47,13 +47,12 @@ const template: string = `
 	]
 })
 export default class GameEventsComponent {
-	gameEvents: Object = [];
+	dataStore: any;
 	displayEventEditor: boolean = false;
 	expandedEventIndex: number = -1;
 	
 	constructor(gameEventsService: GameEventsService) {
-		gameEventsService.gameEvents$.subscribe(updatedEvents => this.gameEvents = updatedEvents);
-		gameEventsService.getGameEvents();
+		this.dataStore = gameEventsService.dataStore;
 	}
 	
 	toggleEventEditor() {
