@@ -4,7 +4,7 @@ import {Http, Headers} from 'angular2/http';
 @Injectable()
 export class GameEventsService {
 	headers = new Headers();
-    
+
 	dataStore: {
 		gameEvents: Array<any>
 	};
@@ -13,7 +13,7 @@ export class GameEventsService {
 		this.headers.append('Content-Type', 'application/json');
 		
 		this.dataStore = { gameEvents: [] };
-        this.getGameEvents();
+		this.getGameEvents();
 	}
 
 	getGameEvents() {
@@ -21,6 +21,7 @@ export class GameEventsService {
 			.map(res => res.json())
 			.subscribe(data => {
 				this.dataStore.gameEvents = data;
+				console.log('recieved events', data);
 			}, error => console.log('error loading events', error));
 	}
 
@@ -29,7 +30,7 @@ export class GameEventsService {
 		gameEvent.choices = [];
 		this.dataStore.gameEvents.push(gameEvent);
 		
-		this.saveGameEvents();
+		this.saveGameEvent(gameEvent);
 	}
 
 	addChoice(choice, eventIndex) {
@@ -48,10 +49,18 @@ export class GameEventsService {
 		
 		this.saveGameEvents();
 	}
-	
+
 	private saveGameEvents() {
 		let jsonString = JSON.stringify(this.dataStore.gameEvents);
 		this.http.post('/save-events', jsonString, { headers: this.headers })
+			.subscribe(data => {
+				console.log('save events successful', data);
+			}, error => console.log('Could not add gameEvent', error));
+	}
+
+	private saveGameEvent(event) {
+		let jsonString = JSON.stringify(event);
+		this.http.post('/save-event', jsonString, { headers: this.headers })
 			.subscribe(data => {
 				console.log('save events successful', data);
 			}, error => console.log('Could not add gameEvent', error));
