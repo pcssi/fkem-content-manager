@@ -7,8 +7,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 const template: string = `
 	<h1>Game Events</h1>
-	<button (click)="toggleEventEditor()">Toggle Event Editor</button>
-	<table class="table" *ngIf="!displayEventEditor">
+	<table class="table">
 		<thead>
 			<tr>
 				<th>Title</th>
@@ -52,15 +51,10 @@ const template: string = `
 })
 export default class GameEventsComponent {
 	dataStore: any;
-	displayEventEditor: boolean = false;
 	expandedEventIndex: number = -1;
 	
 	constructor(gameEventsService: GameEventsService) {
 		this.dataStore = gameEventsService.dataStore;
-	}
-	
-	toggleEventEditor() {
-		this.displayEventEditor = !this.displayEventEditor;
 	}
 	
 	toggleExpandedEvent(i: number) {
