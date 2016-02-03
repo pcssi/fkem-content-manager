@@ -27,8 +27,6 @@ export class GameEventsService {
 
 	addGameEvent(gameEvent) {
 		console.log('adding gameEvent', gameEvent);
-		gameEvent.choices = [];
-		this.dataStore.gameEvents.push(gameEvent);
 		
 		this.saveGameEvent(gameEvent);
 	}
@@ -61,8 +59,11 @@ export class GameEventsService {
 	private saveGameEvent(event) {
 		let jsonString = JSON.stringify(event);
 		this.http.post('/save-event', jsonString, { headers: this.headers })
+			.map(res => res.json())
 			.subscribe(data => {
-				console.log('save events successful', data);
+				console.log('save event successful', data);
+				this.dataStore.gameEvents.push(data);
+				
 			}, error => console.log('Could not add gameEvent', error));
 	}
 }

@@ -24,20 +24,20 @@ app.get('/get-events', function(req, res) {
 app.post('/save-event', function(req, res) {
 	var newEvent = req.body;
 	newEvent.guid = generateGuid();
+	newEvent.choices = [];
 	console.log('new event guid is', newEvent.guid);
 	gameEvents.push(newEvent);
+	writeEventsJson();
 	
-	res.end(http.STATUS_CODES[200], newEvent);
+	res.json(newEvent);
 });
 
 app.post('/save-events', function(req, res) {
 	var eventsArray = req.body;
 	console.log('received events', eventsArray);
 	gameEvents = eventsArray;
-	fs.writeFile('data/gameEvents.json', JSON.stringify(gameEvents), err => {
-		if(err) throw err;
-		console.log('events saved');
-	});
+	writeEventsJson();
+	
 	res.end(JSON.stringify(gameEvents));
 });
 
@@ -46,6 +46,13 @@ app.use("/events", express.static('./'));
 app.use("/equipment", express.static('./'));
 
 server.listen(3000, function(){});
+
+function writeEventsJson() {
+	fs.writeFile('data/gameEvents.json', JSON.stringify(gameEvents), err => {
+		if(err) throw err;
+		console.log('events saved');
+	});
+}
 
 function generateGuid() {
 	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
