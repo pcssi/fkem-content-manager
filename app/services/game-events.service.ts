@@ -6,13 +6,14 @@ export class GameEventsService {
 	headers = new Headers();
 
 	dataStore: {
-		gameEvents: Array<any>
+		gameEvents: Array<any>,
+        choices: Array<any>
 	};
 
 	constructor(private http: Http) {
 		this.headers.append('Content-Type', 'application/json');
 		
-		this.dataStore = { gameEvents: [] };
+		this.dataStore = { gameEvents: [], choices: [] };
 		this.getGameEvents();
 	}
 
@@ -24,6 +25,15 @@ export class GameEventsService {
 				console.log('recieved events', data);
 			}, error => console.log('error loading events', error));
 	}
+    
+    getEventChoices(guid) {
+        this.http.get(`/get-event-choices/${guid}`)
+			.map(res => res.json())
+			.subscribe(data => {
+				this.dataStore.choices = data;
+				console.log('recieved choices', data);
+			}, error => console.log('error loading choices', error));
+    }
 
 	addGameEvent(gameEvent) {
 		console.log('adding gameEvent', gameEvent);

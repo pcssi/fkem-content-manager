@@ -3,6 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import EquipmentItemsComponent from '../equipment/equipment-items';
 import GameEventsComponent from '../game-events/game-events';
 import GameEventFormComponent from '../game-events/game-event-form';
+import EventChoicesComponent from '../game-events/event-choices/event-choices';
 import {GameEventsService} from '../../services/game-events.service';
 import {EquipmentService} from '../../services/equipment.service';
 
@@ -31,8 +32,9 @@ var template: string = `
 })
 @RouteConfig([
 	{path: '/events', name: 'Events', component: GameEventsComponent},
-	{path: '/event-editor/:eventIndex/', name: 'Event Editor', component: GameEventFormComponent},
-	{path: '/equipment', name: 'Equipment', component: EquipmentItemsComponent}
+	{path: '/event-editor/:eventGuid/', name: 'Event Editor', component: GameEventFormComponent},
+	{path: '/equipment', name: 'Equipment', component: EquipmentItemsComponent},
+    {path: 'event/:eventGuid/choices', name: 'Choices', component: EventChoicesComponent}
 ])
 export default class ApplicationComponent {
 	

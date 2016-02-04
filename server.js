@@ -21,6 +21,21 @@ app.get('/get-events', function(req, res) {
 	res.send(gameEvents);
 });
 
+app.get('/get-event-choices/:guid', function(req, res) {
+    console.log('getting choices for event guid', req.params.guid);
+    var guid = req.params.guid;
+    var matchingEvent;
+        
+    gameEvents.forEach(event =>{
+        if(event.guid === guid) {
+            matchingEvent = event;
+        }
+    });
+    
+    console.log('matching event', matchingEvent);
+    res.json(matchingEvent.choices);
+});
+
 app.post('/save-event', function(req, res) {
 	var newEvent = req.body;
 	newEvent.guid = generateGuid();
@@ -44,6 +59,7 @@ app.post('/save-events', function(req, res) {
 app.use(express.static('./'));
 app.use("/events", express.static('./'));
 app.use("/equipment", express.static('./'));
+app.use("event/*/choices", express.static('./'));
 
 server.listen(3000, function(){});
 

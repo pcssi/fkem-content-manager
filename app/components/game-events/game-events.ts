@@ -7,6 +7,10 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 const template: string = `
 	<h1>Game Events</h1>
+    <button class="btn btn-default"
+        [routerLink]="['Event Editor', {eventGuid: 0}]">
+        Add New
+    </button>
 	<table class="table">
 		<thead>
 			<tr>
@@ -17,13 +21,8 @@ const template: string = `
 		<tbody>
 			<tr *ngFor="#event of dataStore.gameEvents, #i = index">
 				<td>
-					<div (click)="toggleExpandedEvent(i)">
+					<div [routerLink]="['Choices', {eventGuid: event.guid}]">
 						{{event.title}}
-					</div>
-					<div *ngIf="expandedEventIndex === i">
-						<event-choices 
-							[choices]="event.choices"
-							[eventIndex]="i"></event-choices>
 					</div>
 				</td>
 				<td>
@@ -32,7 +31,7 @@ const template: string = `
 					</div>
 				</td>
 				<td>
-					<a [routerLink]="['Event Editor', {eventIndex: i}]">Edit</a>
+					<a [routerLink]="['Event Editor', {eventGuid: event.guid}]">Edit</a>
 				</td>
 			</tr>
 		</tbody>
