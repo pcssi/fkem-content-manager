@@ -4,6 +4,7 @@ import EquipmentItemsComponent from '../equipment/equipment-items';
 import GameEventsComponent from '../game-events/game-events';
 import GameEventFormComponent from '../game-events/game-event-form';
 import EventChoicesComponent from '../game-events/event-choices/event-choices';
+import ResultsTableComponent from '../game-events/event-choices/results/results-table';
 import {GameEventsService} from '../../services/game-events.service';
 import {EquipmentService} from '../../services/equipment.service';
 
@@ -34,7 +35,8 @@ var template: string = `
 	{path: '/events', name: 'Events', component: GameEventsComponent},
 	{path: '/event-editor/:eventGuid/', name: 'Event Editor', component: GameEventFormComponent},
 	{path: '/equipment', name: 'Equipment', component: EquipmentItemsComponent},
-    {path: 'event/:eventGuid/choices', name: 'Choices', component: EventChoicesComponent}
+    {path: '/event/:eventGuid/choices', name: 'Choices', component: EventChoicesComponent},
+    {path: '/choice/:choiceGuid/results', name: 'Results', component: ResultsTableComponent}
 ])
 export default class ApplicationComponent {
 	

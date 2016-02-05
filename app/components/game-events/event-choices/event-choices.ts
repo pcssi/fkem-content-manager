@@ -1,9 +1,8 @@
 import {Component, Input} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {RouteParams} from 'angular2/router';
+import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 import {GameEventsService} from '../../../services/game-events.service';
 import ChoiceEditorComponent from './choice-editor';
-import ResultsTableComponent from './results/results-table';
 
 const template: string = `
 	<h4>Event Choices</h4>
@@ -15,16 +14,8 @@ const template: string = `
 		</thead>
 		<tbody>
 			<tr *ngFor="#choice of datastore.choices, #i = index">
-				<td>
-					<div>
-						{{choice.description}}
-					</div>
-					<div>
-						<results-table 
-							[results]="choice.results"
-							[eventIndex]="eventIndex"
-							[choiceIndex]="i"></results-table>
-					</div>
+				<td [routerLink]="['Results', {choiceGuid: choice.guid}]">
+					{{choice.description}}
 				</td>
 			</tr>
 		</tbody>
@@ -38,7 +29,7 @@ const template: string = `
 	directives: [
 		NgFor,
 		ChoiceEditorComponent,
-		ResultsTableComponent
+		ROUTER_DIRECTIVES
 	]
 })
 export default class EventChoicesComponent {
