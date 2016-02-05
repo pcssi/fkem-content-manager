@@ -24,16 +24,9 @@ app.get('/get-events', function(req, res) {
 app.get('/get-event-choices/:guid', function(req, res) {
     console.log('getting choices for event guid', req.params.guid);
     var guid = req.params.guid;
-    var matchingEvent;
-        
-    gameEvents.forEach(event =>{
-        if(event.guid === guid) {
-            matchingEvent = event;
-        }
-    });
+    var event = getEventByGuid(guid);
     
-    console.log('matching event', matchingEvent);
-    res.json(matchingEvent.choices);
+    res.json(event.choices);
 });
 
 app.post('/save-event', function(req, res) {
@@ -45,6 +38,18 @@ app.post('/save-event', function(req, res) {
 	writeEventsJson();
 	
 	res.json(newEvent);
+});
+
+app.post('/event/:eventGuid/save-choice', function(req, res) {
+    console.log('saving choice for event guid', req.params.eventGuid);
+    var eventGuid = req.params.eventGuid;
+    var event = getEventByGuid(eventGuid);
+    var choice = req.body;
+    choice.results = [];
+    choice.guid = generateGuid();
+    
+    event.choices.push(choice);
+    res.json(choice);
 });
 
 app.post('/save-events', function(req, res) {
@@ -59,9 +64,22 @@ app.post('/save-events', function(req, res) {
 app.use(express.static('./'));
 app.use("/events", express.static('./'));
 app.use("/equipment", express.static('./'));
-app.use("event/*/choices", express.static('./'));
+app.use("/event/*/choices", express.static('./'));
 
 server.listen(3000, function(){});
+
+function getEventByGuid(guid) {
+    var matchingEvent;
+        
+    gameEvents.forEach(event =>{
+        if(event.guid === guid) {
+            matchingEvent = event;
+        }
+    });
+    
+    console.log('matching event', matchingEvent);
+    return matchingEvent;
+}
 
 function writeEventsJson() {
 	fs.writeFile('data/gameEvents.json', JSON.stringify(gameEvents), err => {

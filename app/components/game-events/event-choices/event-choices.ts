@@ -1,6 +1,6 @@
 import {Component, Input} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
+import {RouteParams} from 'angular2/router';
 import {GameEventsService} from '../../../services/game-events.service';
 import ChoiceEditorComponent from './choice-editor';
 import ResultsTableComponent from './results/results-table';

@@ -1,5 +1,6 @@
 import {Component, Input} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
+import {RouteParams} from 'angular2/router';
 import {GameEventsService} from '../../../services/game-events.service';
 
 const template: string = `
@@ -18,10 +19,13 @@ const template: string = `
 	template: template
 })
 export default class ChoiceEditorComponent {
-	@Input() eventIndex;
-	constructor(public gameEventsService: GameEventsService){};
+	eventGuid: string;
+    
+	constructor(routeParams: RouteParams, public gameEventsService: GameEventsService){
+        this.eventGuid = routeParams.get('eventGuid');
+    };
 	
 	onSubmit(formData) {
-		this.gameEventsService.addChoice(formData, this.eventIndex);
+		this.gameEventsService.addChoice(formData, this.eventGuid);
 	}
 }
