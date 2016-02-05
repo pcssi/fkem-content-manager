@@ -29,6 +29,14 @@ app.get('/get-event-choices/:guid', function(req, res) {
     res.json(event.choices);
 });
 
+app.get('/get-choice-results/:guid', function(req, res) {
+    console.log('getting results for choice guid', req.params.guid);
+    var guid = req.params.guid;
+    var choice = getChoiceByGuid(guid);
+    
+    res.json(choice.results);
+});
+
 app.post('/save-event', function(req, res) {
 	var newEvent = req.body;
 	newEvent.guid = generateGuid();
@@ -65,6 +73,7 @@ app.use(express.static('./'));
 app.use("/events", express.static('./'));
 app.use("/equipment", express.static('./'));
 app.use("/event/*/choices", express.static('./'));
+app.use("/choice/*/results", express.static('./'));
 
 server.listen(3000, function(){});
 
@@ -79,6 +88,21 @@ function getEventByGuid(guid) {
     
     console.log('matching event', matchingEvent);
     return matchingEvent;
+}
+
+function getChoiceByGuid(guid) {
+    var matchingChoice;
+        
+    gameEvents.forEach(event =>{
+		event.choices.forEach(choice => {
+			if(choice.guid === guid) {
+				matchingChoice = choice;
+			}
+		});
+    });
+    
+    console.log('matching event', matchingChoice);
+    return matchingChoice;
 }
 
 function writeEventsJson() {

@@ -1,5 +1,7 @@
 import {Component, OnInit, Input} from 'angular2/core';
 import {NgFor} from 'angular2/common';
+import {RouteParams} from 'angular2/router';
+import {GameEventsService} from '../../../../services/game-events.service';
 import ResultEditorComponent from './result-editor';
 
 const template: string = `
@@ -33,9 +35,13 @@ const template: string = `
 })
 
 export default class ResultsTableComponent {
-	@Input() results;
-	@Input() eventIndex;
-	@Input() choiceIndex;
+	choiceGuid: string;
+	datastore: any;
 	
-	constructor() { }
+	constructor(params: RouteParams, gameEventsService: GameEventsService) {
+		console.log('guid', params.get('choiceGuid'));
+        this.choiceGuid = params.get('choiceGuid');
+		this.datastore = gameEventsService.dataStore;
+		gameEventsService.getChoiceResults(this.choiceGuid);
+	}
 }
