@@ -19,6 +19,7 @@
   "devDependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
+    "tsd": "^0.6.5",
     "typescript": "1.7.5"
   }
 }
